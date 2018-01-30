@@ -10,7 +10,7 @@
 %
 % -------------------------------------------------------------
 
-function hello2
+function conversion
 
     clear all;
     clc;
@@ -18,24 +18,50 @@ function hello2
     %block_numpy_multiply
     %block_matrix_find
     %block_numpy_reshape
-    block_numpy_unique
+    %block_numpy_unique
     %block_direction_plot   
     %block_inline_function
+    block_map_reduce
 end
 
+
+% this is a peudo map reduce
+
+function block_map_reduce
+    
+    items = -2:3-0.001
+    sigmoid_func2 = @(x) 1 /(1 + exp(-x));
+
+    
+    sigmoids = [];
+    for i = 1:length(items)
+        sigmoids = [sigmoids sigmoid_func2(items(i))];
+    end
+    
+    display(sigmoids)
+
+    sigmoids = arrayfun(@(x) 1/(1 + exp(-x)), items)
+    
+    prods = prod(sigmoids);
+    prod3 = prod(sigmoids(sigmoids>0.2));
+    
+    display(prods);
+    display(prod3);
+
+end
 
 
 function block_inline_function
 
-    function val = sigmoid(x)
+    function val = sigmoid_func(x)
         val = 1 /(1 + exp(-x));
     end
     
-    display(sigmoid(2))
+    display(sigmoid_func(2))
     
-    sigmoid2 = @(x) 1 /(1 + exp(-x));
+    sigmoid_func2 = @(x) 1 /(1 + exp(-x));
 
-    display(sigmoid2(2))
+    display(sigmoid_func2(2))
 
 end
 
@@ -117,8 +143,8 @@ end
 
 function block_direction_plot
 
-    A = [1.2 2.4; 3.1 7.0];
-    %A = [3.1 7.0; 1.2 2.4];
+    %A = [1.2 2.4; 3.1 7.0];
+    A = [3.1 7.0; 1.2 2.4];
     B = [1.0 1.8; 2.5 5.2];
     
     line(A(:,1),A(:,2),'color',[0 1 0]);
