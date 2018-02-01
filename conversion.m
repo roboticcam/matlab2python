@@ -21,8 +21,30 @@ function conversion
     %block_numpy_unique
     %block_direction_plot   
     %block_inline_function
-    block_map_reduce
+    %block_map_reduce
+    block_read_csv
 end
+
+
+% this is to create another table to compute the total sales
+function block_read_csv
+    
+   store = readtable('superstore.xls');
+   
+   [val, indices, inv_indices] =  unique(store.CustomerID);
+    
+   profit = zeros(length(val),1);
+   for v = 1:length(val)
+       cus_list = find(store.Profit(inv_indices == v));
+       profit(v)= sum(store.Profit(cus_list));
+   end
+   
+   profitT = table(val,profit);
+   
+   profitT.Properties.VariableNames = {'CustomerID','total_profit'};
+   
+end
+
 
 
 % this is a peudo map reduce
@@ -93,8 +115,9 @@ end
 % --------------------------------------
 
 function block_matrix_find
+    
     a_list = magic(3);
-    a_list = [ 8, 1, 6; 3, 5, 7; 4, 9, 2];
+    a_list = [ 8, 1, 6; 3, 5, 7; 4, 9, 2]
     
     display(a_list > 5)
     display(a_list( a_list > 5 ))
