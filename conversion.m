@@ -31,6 +31,13 @@ function block_read_csv
     
    store = readtable('superstore.xls');
    
+   
+   % ----------------------------------------------
+   % Method 2
+   % ----------------------------------------------
+   
+   tic;
+   
    [val, indices, inv_indices] =  unique(store.CustomerID);
     
    profit = zeros(length(val),1);
@@ -39,9 +46,28 @@ function block_read_csv
        profit(v)= sum(store.Profit(cus_list));
    end
    
-   profitT = table(val,profit);
+   profit_1 = table(val,profit);
    
-   profitT.Properties.VariableNames = {'CustomerID','total_profit'};
+   profit_1.Properties.VariableNames = {'CustomerID','Profit'};
+   
+   toc;
+   
+   
+   % ----------------------------------------------
+   % Method 3
+   % ----------------------------------------------
+   
+   tic;
+   
+   [val, indices, inv_indices] =  unique(store.CustomerID);
+
+   groupSums = accumarray(inv_indices,store.Profit);
+   
+   profit_3 = table(val,groupSums);
+   
+   profit_3.Properties.VariableNames = {'CustomerID','Profit'};
+   
+   toc;
    
 end
 
