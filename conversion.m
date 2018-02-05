@@ -4,9 +4,10 @@
 %
 % Each Matlab block function corresponds a block in conversion.ipynb
 %
+%
 % written by Richard Xu (yida.xu@uts.edu.au)
 %
-% Jan 2018
+% Feb 2018
 %
 % -------------------------------------------------------------
 
@@ -41,6 +42,7 @@ function block_read_csv
    [val, indices, inv_indices] =  unique(store.CustomerID);
     
    profit = zeros(length(val),1);
+   
    for v = 1:length(val)
        cus_list = find(store.Profit(inv_indices == v));
        profit(v)= sum(store.Profit(cus_list));
