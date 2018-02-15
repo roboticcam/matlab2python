@@ -139,7 +139,6 @@ function block_numpy_multiply
 
 end
 
-
 % --------------------------------------
 
 function block_matrix_find
@@ -151,6 +150,7 @@ function block_matrix_find
     display(a_list( a_list > 5 ))
 
 end
+
 
 
 function block_numpy_reshape
@@ -187,8 +187,6 @@ function block_numpy_unique
     end
 
 end
-
-
 
 
 
