@@ -3,7 +3,7 @@ This is a growing tutorial demonstrates some MATLAB examples and their equivalen
 
 ## conversion.ipynb
 
-contains some basic python code which has its corresponding code in MATLAB, which contains in “conversion.m” 
+contains some basic python code; The equivalence between Python and MATLAB are demonstrated blocks of the same name in both “conversion.ipynb” and “conversion.m” 
 
 ## batch_norm.ipynb
 
